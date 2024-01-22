@@ -60,50 +60,47 @@ void loop() {
         en estado
         estado = Serial.read();
     }
-    if(estado==&#39;a&#39;){ // Boton desplazar al Frente
+    if(estado=="a"){ // Boton desplazar al Frente
         analogWrite(derB, 0);
         analogWrite(izqB, 0);
         analogWrite(derA, vel);
         analogWrite(izqA, vel);
     }
-    if(estado==&#39;b&#39;){ // Boton IZQ
+    if(estado=="b"){ // Boton IZQ
         analogWrite(derB, 0);
         analogWrite(izqB, 0);
         analogWrite(derA, 0);
         analogWrite(izqA, vel);
     }
-    if(estado==&#39;c&#39;){ // Boton Parar
+    if(estado=="c"){ // Boton Parar
         analogWrite(derB, 0);
         analogWrite(izqB, 0);
         analogWrite(derA, 0);
         analogWrite(izqA, 0);
     }
-    if(estado==&#39;d&#39;){ // Boton DER
+    if(estado=="d"){ // Boton DER
         analogWrite(derB, 0);
         analogWrite(izqB, 0);
         analogWrite(izqA, 0);
         analogWrite(derA, vel);
     }
-    if(estado==&#39;e&#39;){ // Boton Reversa
+    if(estado=="e"){ // Boton Reversa
         analogWrite(derA, 0);
         analogWrite(izqA, 0);
         analogWrite(derB, vel);
         analogWrite(izqB, vel);
     }
-    if (estado ==&#39;f&#39;){ // Boton ON, se mueve sensando
+    if (estado =="f"){ // Boton ON, se mueve sensando
         distancia
 
-        digitalWrite(ptrig, HIGH); // genera el pulso de trigger
-        por 10us
+        digitalWrite(ptrig, HIGH); // genera el pulso de trigger por 10us
         delay(0.01);
         digitalWrite(ptrig, LOW);
         duracion = pulseIn(pecho, HIGH); // Lee el
         tiempo del Echo
-        distancia = (duracion/2) / 29; // calcula la
-        distancia en centimetros
+        distancia = (duracion/2) / 29;   // calcula la distancia en centimetros
         delay(10);
-        if (distancia &lt;= 15 &amp;&amp; distancia &gt;=2){ // si la distancia
-            es menor de 15cm
+        if (distancia <= 15 && distancia >= 2){ // si la distancia es menor de 15cm
             digitalWrite(13,HIGH); // Enciende LED
             analogWrite(derB, 0); // Parar los
             motores por 200 mili segundos
@@ -131,8 +128,7 @@ void loop() {
             analogWrite(izqA, vel);
         }
     }
-    if(estado==&#39;g&#39;){ // Boton OFF, detiene los motores no
-        hace nada
+    if(estado == "g"){ // Boton OFF, detiene los motores no hace nada
         analogWrite(derB, 0);
         analogWrite(izqB, 0);
         analogWrite(derA, 0);

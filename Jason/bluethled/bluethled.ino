@@ -7,6 +7,9 @@ void setup() {
 }
 
 void loop() {
+  // Ejemplo: prende led
+  digitalWrite(LED, HIGH);
+
   if(Serial.available() > 0) {
     estado = Serial.read();
     Serial.println("Estado" + estado);

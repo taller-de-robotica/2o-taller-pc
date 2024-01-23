@@ -1,8 +1,8 @@
-int estado = '';
+int estado = "";
 const int LED = 13;
 
 void setup() {
-  pinmode(LED, OUTPUT);
+  pinMode(LED, OUTPUT);
   Serial.begin(9600);    // Arduino One sólo tiene un serial
 }
 

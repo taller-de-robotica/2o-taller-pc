@@ -56,8 +56,7 @@ void setup() {
 }
 
 void loop() {
-    if(Serial.available()&gt;0){ // lee el bluetooth y almacena
-        en estado
+    if(Serial.available() > 0){ // lee el bluetooth y almacena en estado
         estado = Serial.read();
     }
     if(estado=="a"){ // Boton desplazar al Frente
@@ -90,30 +89,25 @@ void loop() {
         analogWrite(derB, vel);
         analogWrite(izqB, vel);
     }
-    if (estado =="f"){ // Boton ON, se mueve sensando
-        distancia
+    if (estado =="f"){ // Boton ON, se mueve sensando distancia
 
         digitalWrite(ptrig, HIGH); // genera el pulso de trigger por 10us
         delay(0.01);
         digitalWrite(ptrig, LOW);
-        duracion = pulseIn(pecho, HIGH); // Lee el
-        tiempo del Echo
+        duracion = pulseIn(pecho, HIGH); // Lee el tiempo del Echo
         distancia = (duracion/2) / 29;   // calcula la distancia en centimetros
         delay(10);
         if (distancia <= 15 && distancia >= 2){ // si la distancia es menor de 15cm
-            digitalWrite(13,HIGH); // Enciende LED
-            analogWrite(derB, 0); // Parar los
-            motores por 200 mili segundos
+            digitalWrite(13,HIGH);  // Enciende LED
+            analogWrite(derB, 0);   // Parar los motores por 200 mili segundos
             analogWrite(izqB, 0);
             analogWrite(derA, 0);
             analogWrite(izqA, 0);
             delay (200);
-            analogWrite(derB, vel); // Reversa durante
-            500 mili segundos
+            analogWrite(derB, vel); // Reversa durante 500 mili segundos
             analogWrite(izqB, vel);
             delay(500);
-            analogWrite(derB, 0); // Girar durante
-            1100 milisegundos
+            analogWrite(derB, 0);   // Girar durante 1100 milisegundos
             analogWrite(izqB, 0);
             analogWrite(derA, 0);
             analogWrite(izqA, vel);

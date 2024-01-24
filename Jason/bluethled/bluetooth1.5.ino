@@ -1,5 +1,5 @@
 int green_led = 13;
-int estado = 'c'; // inicia detenido
+char estado = 'c'; // inicia detenido
 int tiempo = 0;
 int distancia = 0;
 

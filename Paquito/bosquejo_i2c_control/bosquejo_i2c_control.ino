@@ -15,19 +15,19 @@
 #include <Wire.h>
 const int SLAVE_ADDRESS = 0x8; // Hexadecimal entre 8 y 127
 
-#define speedPinR 3            // Front Wheel PWM pin connect Model-Y M_B ENA 
-#define RightMotorDirPin1 48   // Front Right Motor direction pin 1 to Model-Y M_B IN1 (K1)
-#define RightMotorDirPin2 49   // Front Right Motor direction pin 2 to Model-Y M_B IN2 (K1)
-#define LeftMotorDirPin1  46   // Front Left Motor direction pin 1 to Model-Y M_B IN3  (K3)
-#define LeftMotorDirPin2  47   // Front Left Motor direction pin 2 to Model-Y M_B IN4  (K3)
-#define speedPinL 5            // Front Wheel PWM pin connect Model-Y M_B ENB
+#define speedPinR 9            // Front Wheel PWM pin connect Model-Y M_B ENA 
+#define RightMotorDirPin1 26   // Front Right Motor direction pin 1 to Model-Y M_B IN1 (K1)
+#define RightMotorDirPin2 27   // Front Right Motor direction pin 2 to Model-Y M_B IN2 (K1)
+#define LeftMotorDirPin1  28   // Front Left Motor direction pin 1 to Model-Y M_B IN3  (K3)
+#define LeftMotorDirPin2  29   // Front Left Motor direction pin 2 to Model-Y M_B IN4  (K3)
+#define speedPinL 10            // Front Wheel PWM pin connect Model-Y M_B ENB
 
-#define speedPinRB 6           // Rear Wheel PWM pin connect Left Model-Y M_A ENA 
-#define RightMotorDirPin1B 52  // Rear Right Motor direction pin 1 to Model-Y M_A IN1 (K1)
-#define RightMotorDirPin2B 53  // Rear Right Motor direction pin 2 to Model-Y M_A IN2 (K1) 
-#define LeftMotorDirPin1B  50  // Rear Left Motor direction pin 1 to Model-Y M_A IN3  (K3)
-#define LeftMotorDirPin2B  51  // Rear Left Motor direction pin 2 to Model-Y M_A IN4  (K3)
-#define speedPinLB 7           // Rear Wheel PWM pin connect Model-Y M_A ENB
+#define speedPinRB 11           // Rear Wheel PWM pin connect Left Model-Y M_A ENA 
+#define RightMotorDirPin1B 22  // Rear Right Motor direction pin 1 to Model-Y M_A IN1 (K1)
+#define RightMotorDirPin2B 23  // Rear Right Motor direction pin 2 to Model-Y M_A IN2 (K1) 
+#define LeftMotorDirPin1B  24  // Rear Left Motor direction pin 1 to Model-Y M_A IN3  (K3)
+#define LeftMotorDirPin2B  25  // Rear Left Motor direction pin 2 to Model-Y M_A IN4  (K3)
+#define speedPinLB 12           // Rear Wheel PWM pin connect Model-Y M_A ENB
 
 
 #include <Car.h>
@@ -42,9 +42,9 @@ const Wheel WHEELS[] = {
 Car paquito(WHEELS);
 
 enum Movement {
-  STOP = 0b00000001,
-  FORWARD = 0b00001111,
-  BACKWARD = 0b11110000,
+  STOP = 0b00000001,       // 1
+  FORWARD = 0b00001111,    // 15
+  BACKWARD = 0b11110000,   // 240
 };
 
 void setup() {
@@ -97,6 +97,7 @@ void receiveEvent(int howMany) {
     args[ind++] = c;
     //digitalWrite(LED_PIN, c);
   }
+  Serial.println("Movimiento...");
 
   switch(commandByte) {
     case STOP:
@@ -114,6 +115,7 @@ void receiveEvent(int howMany) {
     default:
       Serial.println("--> Comando desconocido");
   }
+  Serial.println("Termina movimiento...");
 }
 
 // Función que se ejecuta cuando el maestro solicita información.
